@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
         if (id == R.id.action_get_data) {
         	if(isOnline()){
-        		requestData("http://chodespaw.net76.net/feeds/classes.json");
+        		requestData("http://chodespaw.net76.net/feeds/returnJSON.php");
         	} else {
         		Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
         	}
@@ -70,9 +70,13 @@ public class MainActivity extends Activity {
 
 
 	private void requestData(String uri) {
-		// TODO Auto-generated method stub
+		
+		RequestPackage p = new RequestPackage();
+		p.setMethod("GET");
+		p.setUri(uri);
+		p.setParam("table", "course");
 		MyTask task = new MyTask();
-		task.execute(uri);
+		task.execute(p);
 	}
 	
 	protected void updateDisplay() {
@@ -93,7 +97,7 @@ public class MainActivity extends Activity {
 		}
 	}
 	
-	private class MyTask extends AsyncTask<String, String, String> {
+	private class MyTask extends AsyncTask<RequestPackage, String, String> {
 
 		@Override
 		protected void onPreExecute() {
@@ -106,7 +110,7 @@ public class MainActivity extends Activity {
 		}
 		
 		@Override
-		protected String doInBackground(String... params) {
+		protected String doInBackground(RequestPackage... params) {
 			
 			String content = HttpManager.getData(params[0]);
 			return content;
@@ -131,4 +135,3 @@ public class MainActivity extends Activity {
 		}
 	}
 }
-

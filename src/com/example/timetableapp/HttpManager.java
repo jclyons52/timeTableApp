@@ -9,13 +9,18 @@ import java.net.URL;
 
 public class HttpManager {
 
-	public static String getData(String uri) {
+	public static String getData(RequestPackage p) {
 		
 		BufferedReader reader = null;
+		String uri = p.getUri();
+		if (p.getMethod().equals("GET")) {
+			uri += "?"+p.getEncodedParams();
+		}
 		
 		try {
 			URL url = new URL(uri);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod(p.getMethod());
 			
 			StringBuilder sb = new StringBuilder();
 			reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
