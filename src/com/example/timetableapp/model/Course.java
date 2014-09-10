@@ -44,4 +44,9 @@ public class Course {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	
+	@Override
+	public String toString() {
+		return this.getName()+"\n"+this.getDay()+"\n"+this.getStartTime()+"\n"+this.getEndTime()+"\n"+this.getLocation()+"\n";
+	}
 }

@@ -3,11 +3,12 @@ package com.example.timetableapp;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import com.example.timetableapp.model.Course;
 import com.example.timetableapp.parsers.CourseJSONParser;
-
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -16,12 +17,14 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ListActivity {
 	
 	TextView output;
 	ProgressBar pb;
@@ -42,6 +45,8 @@ public class MainActivity extends Activity {
 		pb.setVisibility(View.INVISIBLE);
 		
 		tasks = new ArrayList<>();
+		
+//		updateDisplay();
     }
 
 
@@ -81,9 +86,9 @@ public class MainActivity extends Activity {
 	
 	protected void updateDisplay() {
 		if (courseList != null) {
-			for (Course course : courseList){
-				output.append(course.getName() + "\n");
-			}
+			ArrayAdapter<Course> adapter =
+					new ArrayAdapter<Course>(this, R.layout.list_item_layout, courseList);
+			setListAdapter(adapter);
 		}
 	}
 
@@ -94,8 +99,21 @@ public class MainActivity extends Activity {
 			return true;
 		} else {
 			return false;
-		}
+		
 	}
+	}
+	
+	protected void onListItemClick(ListView l, View v, int position, long id){
+		Course course = courseList.get(position);
+		Intent intent = new Intent(this, SessionDetailsActivity.class);
+		intent.putExtra("courseCode", course.getCourseCode());
+		intent.putExtra("Day", course.getDay());
+		intent.putExtra("EndTime", course.getEndTime());
+		intent.putExtra("Location", course.getLocation());
+		intent.putExtra("Name", course.getName());
+		startActivityForResult(intent, 1001);
+	}
+	
 	
 	private class MyTask extends AsyncTask<RequestPackage, String, String> {
 
