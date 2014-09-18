@@ -25,6 +25,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/progressBar1" >
     </ListView>
+    
+    
 
     <TextView
         android:id="@+id/textView1"
