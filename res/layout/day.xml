@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:id="@+id/day"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android1:background="#DDDDD7" >
+
+    <ImageView
+        android1:id="@+id/imageView1"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:src="@drawable/white_box_day" />
+
+    <ImageView
+        android1:id="@+id/imageView2"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:src="@drawable/monday" />
+
+    <TextView
+        android1:id="@+id/room_num_subject"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignLeft="@+id/course_name"
+        android1:layout_alignStart="@+id/course_name"
+        android1:layout_below="@+id/course_name"
+        android1:text="@string/room_num"
+        android1:textSize="12sp" />
+
+    <TextView
+        android1:id="@+id/start_time_view2"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignTop="@+id/course_name"
+        android1:layout_marginRight="22dp"
+        android1:layout_toLeftOf="@+id/course_name"
+        android1:text="@string/start_time" />
+
+    <TextView
+        android1:id="@+id/course_name"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignParentTop="true"
+        android1:layout_centerHorizontal="true"
+        android1:layout_marginTop="127dp"
+        android1:text="@string/course_name"
+        android1:textSize="15sp" />
+
+    <TextView
+        android1:id="@+id/end_time"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignLeft="@+id/start_time_view2"
+        android1:layout_alignTop="@+id/room_num_subject"
+        android1:text="@string/end_time" />
+
+    <TextView
+        android1:id="@+id/TextView04"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignStart="@+id/TextView02"
+        android1:layout_alignLeft="@id/TextView02"
+        android1:layout_below="@+id/TextView02"
+        android1:layout_toRightOf="@+id/course_name"
+        android1:text="@string/room_num"
+        android1:textSize="12sp" />
+
+    <TextView
+        android1:id="@+id/TextView02"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_below="@+id/end_time"
+        android1:layout_marginTop="18dp"
+        android1:layout_toRightOf="@+id/start_time_view2"
+        android1:text="@string/course_name"
+        android1:textSize="15sp" />
+
+    <TextView
+        android1:id="@+id/TextView01"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignLeft="@+id/end_time"
+        android1:layout_alignTop="@+id/TextView02"
+        android1:text="@string/start_time" />
+
+    <TextView
+        android1:id="@+id/TextView03"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignBottom="@+id/TextView04"
+        android1:layout_alignLeft="@+id/TextView01"
+        android1:text="@string/end_time" />
+
+</RelativeLayout>
