@@ -39,6 +39,7 @@ public final class R {
         public static final int TextView02=0x7f08000b;
         public static final int TextView03=0x7f08000d;
         public static final int TextView04=0x7f08000a;
+        public static final int action_get_data=0x7f080010;
         public static final int course_name=0x7f080007;
         public static final int day=0x7f080003;
         public static final int description_subject=0x7f08000f;

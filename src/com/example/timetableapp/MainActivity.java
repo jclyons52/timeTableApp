@@ -3,7 +3,6 @@ package com.example.timetableapp;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.example.timetableapp.model.Course;
 import com.example.timetableapp.parsers.CourseJSONParser;
 import android.app.ListActivity;
@@ -35,7 +34,7 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.open);
+        setContentView(R.layout.activity_main);
         
 //		Initialize the TextView for vertical scrolling
 		output = (TextView) findViewById(R.id.textView);
