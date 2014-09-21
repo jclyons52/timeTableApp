@@ -12,6 +12,7 @@ public class RequestPackage {
 	private Map<String, String> params = new HashMap<>();
 	
 	public String getUri() {
+		
 		return uri;
 	}
 	public void setUri(String uri) {
