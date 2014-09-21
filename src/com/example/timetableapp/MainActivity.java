@@ -46,6 +46,8 @@ public class MainActivity extends ListActivity {
 		tasks = new ArrayList<>();
 		
 //		updateDisplay();
+		
+
     }
 
 
