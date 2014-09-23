@@ -3,8 +3,10 @@ package com.example.timetableapp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.timetableapp.model.Course;
-import com.example.timetableapp.parsers.CourseJSONParser;
+import com.example.timetableapp.model.Group;
+import com.example.timetableapp.parsers.GroupJSONParser;
+
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,19 +24,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-public class MainActivity extends ListActivity {
+public class GroupSelection extends ListActivity {
 	
+	int programID;
 	TextView output;
 	ProgressBar pb;
 	List<MyTask> tasks;
 	
-	List<Course> courseList;
+	List<Group> groupList;
 	
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		Intent intent = this.getIntent();
+		programID = intent.getIntExtra("program_id", 0);
+		setContentView(R.layout.activity_main);
         
 //		Initialize the TextView for vertical scrolling
 		output = (TextView) findViewById(R.id.textView);
@@ -44,14 +48,9 @@ public class MainActivity extends ListActivity {
 		pb.setVisibility(View.INVISIBLE);
 		
 		tasks = new ArrayList<>();
-		
-//		updateDisplay();
-		
-
-    }
-
-
-    @Override
+	}
+	
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
@@ -66,13 +65,10 @@ public class MainActivity extends ListActivity {
         int id = item.getItemId();
         if (id == R.id.action_get_data) {
         	if(isOnline()){
-        		requestData("http://chodespaw.net76.net/feeds/returnJSON.php");
+        		requestData("http://http://defiant-dayle.gopagoda.com/programs"+programID+"/groups");
         	} else {
         		Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
         	}
-        }else if(id == R.id.action_set_details){
-        	Intent intent = new Intent(this, ProgramSelection.class);
-        	startActivity(intent);
         }
         return false;
     }
@@ -83,15 +79,14 @@ public class MainActivity extends ListActivity {
 		RequestPackage p = new RequestPackage();
 		p.setMethod("GET");
 		p.setUri(uri);
-		p.setParam("table", "course");
 		MyTask task = new MyTask();
 		task.execute(p);
 	}
 	
 	protected void updateDisplay() {
-		if (courseList != null) {
-			ArrayAdapter<Course> adapter =
-					new ArrayAdapter<Course>(this, R.layout.list_item_layout, courseList);
+		if (groupList != null) {
+			ArrayAdapter<Group> adapter =
+					new ArrayAdapter<Group>(this, R.layout.list_item_layout, groupList);
 			setListAdapter(adapter);
 		}
 	}
@@ -107,19 +102,12 @@ public class MainActivity extends ListActivity {
 	}
 	}
 	
-	
-	
 	protected void onListItemClick(ListView l, View v, int position, long id){
-		Course course = courseList.get(position);
-		Intent intent = new Intent(this, SessionDetailsActivity.class);
-		intent.putExtra("courseCode", course.getCourseCode());
-		intent.putExtra("Day", course.getDay());
-		intent.putExtra("EndTime", course.getEndTime());
-		intent.putExtra("Location", course.getLocation());
-		intent.putExtra("Name", course.getName());
+		Group group = groupList.get(position);
+		Intent intent = new Intent(this, GroupSelection.class);
+		intent.putExtra("program_id", group.getGroupID());
 		startActivityForResult(intent, 1001);
 	}
-	
 	
 	private class MyTask extends AsyncTask<RequestPackage, String, String> {
 
@@ -143,7 +131,7 @@ public class MainActivity extends ListActivity {
 		@Override
 		protected void onPostExecute(String result) {
 			
-			courseList = CourseJSONParser.parseFeed(result);
+			groupList = GroupJSONParser.parseFeed(result);
 			updateDisplay();
 
 			tasks.remove(this);

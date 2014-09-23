@@ -7,5 +7,10 @@
 android:title="@string/get_data"
 android:orderInCategory="100"
 android:showAsAction="always"/>
+ 
+ <item android:id="@+id/action_set_details"
+android:title="@string/set_details"
+android:orderInCategory="101"
+android:showAsAction="always"/>
 
 </menu>
