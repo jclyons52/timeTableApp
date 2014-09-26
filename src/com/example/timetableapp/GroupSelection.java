@@ -38,6 +38,7 @@ public class GroupSelection extends ListActivity {
 		super.onCreate(savedInstanceState);
 		Intent intent = this.getIntent();
 		programID = intent.getIntExtra("program_id", 0);
+		System.out.println(programID);
 		setContentView(R.layout.activity_main);
         
 //		Initialize the TextView for vertical scrolling
@@ -48,6 +49,18 @@ public class GroupSelection extends ListActivity {
 		pb.setVisibility(View.INVISIBLE);
 		
 		tasks = new ArrayList<>();
+		
+		if(isOnline()){
+    		StringBuilder sb = new StringBuilder();
+    		sb.append("http://defiant-dayle.gopagoda.com/programs/");
+    		sb.append(programID);
+    		sb.append("/groups");
+    		String strI = sb.toString();
+    		System.out.println(strI);
+    		requestData(strI);
+    	} else {
+    		Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
+    	}
 	}
 	
 	@Override
@@ -62,25 +75,15 @@ public class GroupSelection extends ListActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_get_data) {
-        	if(isOnline()){
-        		requestData("http://http://defiant-dayle.gopagoda.com/programs"+programID+"/groups");
-        	} else {
-        		Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
-        	}
-        }
+        
         return false;
     }
 
 
 	private void requestData(String uri) {
 		
-		RequestPackage p = new RequestPackage();
-		p.setMethod("GET");
-		p.setUri(uri);
 		MyTask task = new MyTask();
-		task.execute(p);
+		task.execute(uri);
 	}
 	
 	protected void updateDisplay() {
@@ -104,12 +107,12 @@ public class GroupSelection extends ListActivity {
 	
 	protected void onListItemClick(ListView l, View v, int position, long id){
 		Group group = groupList.get(position);
-		Intent intent = new Intent(this, GroupSelection.class);
-		intent.putExtra("program_id", group.getGroupID());
-		startActivityForResult(intent, 1001);
+		Intent intent = new Intent(this, MainActivity.class);
+		intent.putExtra("group_id", group.getGroupID());
+		startActivityForResult(intent, 1002);
 	}
 	
-	private class MyTask extends AsyncTask<RequestPackage, String, String> {
+	private class MyTask extends AsyncTask<String, String, String> {
 
 		@Override
 		protected void onPreExecute() {
@@ -122,7 +125,7 @@ public class GroupSelection extends ListActivity {
 		}
 		
 		@Override
-		protected String doInBackground(RequestPackage... params) {
+		protected String doInBackground(String... params) {
 			
 			String content = HttpManager.getData(params[0]);
 			return content;

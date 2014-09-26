@@ -24,8 +24,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".SessionDetailsActivity"/>
-        <activity android:name=".ProgramSelection"/>
-        <activity android:name=".GroupSelection"/>
+        <activity android:name=".ProgramSelection"
+            	  android:label="@string/program_activity" />
+        <activity android:name=".GroupSelection"
+            	  android:label="@string/group_activity" />
     </application>
 
 </manifest>

@@ -37,6 +37,7 @@ public class RequestPackage {
 	
 	public String getEncodedParams() {
 		StringBuilder sb = new StringBuilder();
+		if (params != null){
 		for (String key : params.keySet()) {
 			String value = null;
 			try {
@@ -51,5 +52,8 @@ public class RequestPackage {
 			sb.append(key + "=" + value);
 		}
 		return sb.toString();
+		}else{
+			return null;
+		}
 	}
 }

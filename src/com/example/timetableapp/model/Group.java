@@ -23,4 +23,9 @@ public class Group {
 	public void setProgramID(int programID) {
 		this.programID = programID;
 	}
+	@Override
+	public String toString() {
+		return "Group [groupCode=" + groupCode + "]";
+	}
+	
 }

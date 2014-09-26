@@ -44,6 +44,12 @@ public class ProgramSelection extends ListActivity {
 			pb.setVisibility(View.INVISIBLE);
 			
 			tasks = new ArrayList<>();
+			
+			if(isOnline()){
+        		requestData("http://defiant-dayle.gopagoda.com/programs");
+        	} else {
+        		Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
+        	}
 	}
 
 	 @Override
@@ -58,25 +64,14 @@ public class ProgramSelection extends ListActivity {
 	        // Handle action bar item clicks here. The action bar will
 	        // automatically handle clicks on the Home/Up button, so long
 	        // as you specify a parent activity in AndroidManifest.xml.
-	        int id = item.getItemId();
-	        if (id == R.id.action_get_data) {
-	        	if(isOnline()){
-	        		requestData("http://defiant-dayle.gopagoda.com/programs");
-	        	} else {
-	        		Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
-	        	}
-	        }
 	        return false;
 	    }
 
 
-		private void requestData(String uri) {
-			
-			RequestPackage p = new RequestPackage();
-			p.setMethod("GET");
-			p.setUri(uri);
+	    private void requestData(String uri) {
+			// TODO Auto-generated method stub
 			MyTask task = new MyTask();
-			task.execute(p);
+			task.execute(uri);
 		}
 		
 		protected void updateDisplay() {
@@ -105,7 +100,7 @@ public class ProgramSelection extends ListActivity {
 			startActivityForResult(intent, 1001);
 		}
 
-private class MyTask extends AsyncTask<RequestPackage, String, String> {
+private class MyTask extends AsyncTask<String, String, String> {
 
 	@Override
 	protected void onPreExecute() {
@@ -118,7 +113,7 @@ private class MyTask extends AsyncTask<RequestPackage, String, String> {
 	}
 	
 	@Override
-	protected String doInBackground(RequestPackage... params) {
+	protected String doInBackground(String... params) {
 		
 		String content = HttpManager.getData(params[0]);
 		return content;

@@ -39,8 +39,7 @@ public final class R {
         public static final int TextView02=0x7f08000c;
         public static final int TextView03=0x7f08000e;
         public static final int TextView04=0x7f08000b;
-        public static final int action_get_data=0x7f080011;
-        public static final int action_set_details=0x7f080012;
+        public static final int action_set_details=0x7f080011;
         public static final int course_name=0x7f080008;
         public static final int day=0x7f080004;
         public static final int description_subject=0x7f080010;
@@ -66,6 +65,7 @@ public final class R {
     }
     public static final class menu {
         public static final int main=0x7f070000;
+        public static final int program=0x7f070001;
     }
     public static final class string {
         public static final int CourseName=0x7f050004;
@@ -75,7 +75,9 @@ public final class R {
         public static final int description=0x7f050009;
         public static final int end_time=0x7f050008;
         public static final int get_data=0x7f050002;
+        public static final int group_activity=0x7f05000c;
         public static final int hello_world=0x7f050001;
+        public static final int program_activity=0x7f05000b;
         public static final int room_num=0x7f050006;
         public static final int set_details=0x7f05000a;
         public static final int start_time=0x7f050007;

@@ -30,4 +30,7 @@ public class Program {
 	public void setCollege(String college) {
 		this.college = college;
 	}
+	public String toString() {
+		return this.getProgramName();
+	}
 }
