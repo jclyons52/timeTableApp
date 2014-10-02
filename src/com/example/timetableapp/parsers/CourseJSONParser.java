@@ -22,12 +22,12 @@ public class CourseJSONParser {
 				JSONObject obj = ar.getJSONObject(i);
 				Course course = new Course();
 				
-				course.setCourseCode(obj.getString("courseCode"));
-				course.setName(obj.getString("name"));
+				course.setCourseCode(obj.getString("course_id"));
+				course.setName(obj.getString("id"));
 				course.setDay(obj.getString("day"));
-				course.setStartTime(obj.getString("startTime"));
-				course.setEndTime(obj.getString("endTime"));
-				course.setLocation(obj.getString("location"));
+				course.setStartTime(obj.getString("start_time"));
+				course.setEndTime(obj.getString("end_time"));
+				course.setLocation(obj.getString("class_location"));
 				
 				courseList.add(course);
 			}

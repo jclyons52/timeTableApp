@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 public class MainActivity extends ListActivity {
 	
+	int groupID;
 	TextView output;
 	ProgressBar pb;
 	List<MyTask> tasks;
@@ -35,7 +36,8 @@ public class MainActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+        Intent intent = this.getIntent();
+        groupID = intent.getIntExtra("group_id", 0);
 //		Initialize the TextView for vertical scrolling
 		output = (TextView) findViewById(R.id.textView);
 		output.setMovementMethod(new ScrollingMovementMethod());
@@ -45,7 +47,19 @@ public class MainActivity extends ListActivity {
 		
 		tasks = new ArrayList<>();
 		
+		if(isOnline()){
+    		StringBuilder sb = new StringBuilder();
+    		sb.append("http://defiant-dayle.gopagoda.com/groups/");
+    		sb.append(groupID);
+    		sb.append("/courseclasses");
+    		String strI = sb.toString();
+    		System.out.println(strI);
+    		requestData(strI);
+	}
+		
 //		updateDisplay();
+		
+
     }
 
 
@@ -62,25 +76,20 @@ public class MainActivity extends ListActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_get_data) {
-        	if(isOnline()){
-        		requestData("http://chodespaw.net76.net/feeds/returnJSON.php");
-        	} else {
-        		Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
-        	}
-        }
+        if(id == R.id.action_set_details){
+        	Intent intent = new Intent(this, ProgramSelection.class);
+        	startActivity(intent);
+        }else {
+    		Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
+    	}
         return false;
     }
 
 
-	private void requestData(String uri) {
-		
-		RequestPackage p = new RequestPackage();
-		p.setMethod("GET");
-		p.setUri(uri);
-		p.setParam("table", "course");
+    private void requestData(String uri) {
+		// TODO Auto-generated method stub
 		MyTask task = new MyTask();
-		task.execute(p);
+		task.execute(uri);
 	}
 	
 	protected void updateDisplay() {
@@ -102,6 +111,8 @@ public class MainActivity extends ListActivity {
 	}
 	}
 	
+	
+	
 	protected void onListItemClick(ListView l, View v, int position, long id){
 		Course course = courseList.get(position);
 		Intent intent = new Intent(this, SessionDetailsActivity.class);
@@ -114,7 +125,7 @@ public class MainActivity extends ListActivity {
 	}
 	
 	
-	private class MyTask extends AsyncTask<RequestPackage, String, String> {
+	private class MyTask extends AsyncTask<String, String, String> {
 
 		@Override
 		protected void onPreExecute() {
@@ -127,7 +138,7 @@ public class MainActivity extends ListActivity {
 		}
 		
 		@Override
-		protected String doInBackground(RequestPackage... params) {
+		protected String doInBackground(String... params) {
 			
 			String content = HttpManager.getData(params[0]);
 			return content;
