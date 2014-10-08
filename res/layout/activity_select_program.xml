@@ -21,6 +21,7 @@
 
     <ListView
         android:id="@android:id/list"
+        android:listSelector="@drawable/list_selector"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_alignParentLeft="true"
