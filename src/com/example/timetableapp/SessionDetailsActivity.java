@@ -18,15 +18,17 @@ public class SessionDetailsActivity extends Activity{
 		
 		Intent intent = this.getIntent();
 		course = new Course();
-		course.setCourseCode(intent.getStringExtra("coursecode"));
-		course.setDay(intent.getStringExtra("Day"));
-		course.setEndTime(intent.getStringExtra("EndTime"));
-		course.setLocation(intent.getStringExtra("Location"));
 		course.setName(intent.getStringExtra("Name"));
-		
+		course.setCourseCode(intent.getStringExtra("coursecode"));
+		course.setLocation(intent.getStringExtra("Location"));	
+		course.setDay(intent.getStringExtra("Day"));
+		course.setStartTime(intent.getStringExtra("StartTime"));
+		course.setEndTime(intent.getStringExtra("EndTime"));
+	
 		TextView myTextView = (TextView) findViewById(R.id.myTextView);
 		myTextView.setText(course.toString());
 	}
+	
 	
 
 }

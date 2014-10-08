@@ -26,7 +26,6 @@
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/progressBar1"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView"
         android:layout_marginLeft="20dp"
@@ -35,7 +34,8 @@
         android:background="#FFFFFF"
         android:divider="#DDDDD7"
         android:dividerHeight="5.0sp"
-        android:listSelector="@drawable/list_selector" >
+        android:listSelector="@drawable/list_selector"
+        android:scrollbars="vertical|none" >
 
     </ListView>
     

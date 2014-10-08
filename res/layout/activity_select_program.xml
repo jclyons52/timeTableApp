@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.timetableapp.ProgramSelection" >
+    tools:context="com.example.timetableapp.ProgramSelection" 
+    android:background="#DDDDD7">
 
     <!-- Controls select program -->
     
@@ -24,16 +25,19 @@
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/progressBar1" >
-        
-        
+        android:layout_below="@+id/textView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="98dp"
+        android:background="#FFFFFF"
+        android:divider="#DDDDD7"
+        android:dividerHeight="5.0sp"
+        android:listSelector="@drawable/list_selector"
+        android:scrollbars="vertical|none" 
+       	android:layout_alignTop="@+id/progressBar1" >>
+
     </ListView>
-    
-    
 
-
-
-    
 </RelativeLayout>
