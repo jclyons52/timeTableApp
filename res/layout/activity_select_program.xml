@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.timetableapp.ProgramSelection" >
 
+    <!-- Controls select program -->
+    
     <TextView
         android:id="@+id/textView"
         android:layout_width="fill_parent"
@@ -25,6 +27,8 @@
         android:layout_height="250dp"
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/progressBar1" >
+        
+        
     </ListView>
     
     
