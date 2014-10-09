@@ -118,6 +118,7 @@ public class MainActivity extends ListActivity {
 		Intent intent = new Intent(this, SessionDetailsActivity.class);
 		intent.putExtra("courseCode", course.getCourseCode());
 		intent.putExtra("Day", course.getDay());
+		intent.putExtra("StartTime", course.getStartTime());
 		intent.putExtra("EndTime", course.getEndTime());
 		intent.putExtra("Location", course.getLocation());
 		intent.putExtra("Name", course.getName());
