@@ -25,7 +25,7 @@ public class Group {
 	}
 	@Override
 	public String toString() {
-		return "Group [groupCode=" + groupCode + "]";
+		return "Group:" + groupCode + "";
 	}
 	
 }

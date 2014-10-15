@@ -8,7 +8,8 @@
 	<string name="course_code">"coursecode"</string>
     <string name="description">Description text</string>
     <string name="set_details">set details</string>
-    <string name="program_activity">Select Program</string>
+    <string name="program_activity">Select Course</string>
     <string name="group_activity">Select Group</string>
+    <string name="back">Back</string>
 
 </resources>
