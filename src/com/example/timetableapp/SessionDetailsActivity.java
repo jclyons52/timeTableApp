@@ -27,7 +27,9 @@ public class SessionDetailsActivity extends Activity{
 	
 		TextView myTextView = (TextView) findViewById(R.id.myTextView);
 		myTextView.setText(course.toString());
+
 	}
+	
 	
 	
 
