@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.timetableapp.ProgramSelection" 
+    tools:context="com.joseph.timetableapp.ProgramSelection" 
     android:background="#DDDDD7">
 
     <!-- Controls select program -->
